@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Task;
+use App\Models\Project;
 class ProjectController extends Controller
 {
     public function index()
@@ -55,6 +56,15 @@ class ProjectController extends Controller
 
         return redirect()->route('projects.index')->with('success', 'Project deleted successfully!');
     }
+    public function markComplete(Project $project)
+    {
+        $project->completed = true;
+        $project->save();
+
+        return redirect()->route('projects.index');
+    }
+
+
 
 
 

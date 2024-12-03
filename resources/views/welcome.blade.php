@@ -44,8 +44,8 @@
 
 <body>
     <h1>Welcome to My Task Management System</h1>
-    <p>This is a simple, efficient platform to manage your tasks and projects. Get started by creating your first
-        project!</p>
+    <p>This is a simple, efficient platform to manage your tasks . Get started by creating your first
+        Task!</p>
 
     @if (Auth::check())
         <a href="{{ route('dashboard') }}" class="btn">Go to Dashboard</a>

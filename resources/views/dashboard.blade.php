@@ -6,7 +6,7 @@
                     Welcome to your Dashboard
                 </h3>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                    Here is an overview of your tasks and projects.
+                    Here is an overview of your Taks.
                 </p>
             </div>
             <div class="border-t border-gray-200">
