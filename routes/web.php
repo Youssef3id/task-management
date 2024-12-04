@@ -2,15 +2,15 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/admin/user/{user}/tasks', [AdminController::class, 'showUserTasks'])->name('admin.user.tasks');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [AdminController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -33,7 +33,8 @@ Route::get('login/github', [SocialAuthController::class, 'redirectToGithub'])->n
 Route::get('login/github/callback', [SocialAuthController::class, 'handleGithubCallback']);
 
 
-
+Route::get('/admin/create-task', [AdminController::class, 'create'])->name('admin.create-task');
+Route::post('/admin/store-task', [AdminController::class, 'store'])->name('admin.store-task');
 
 
 require __DIR__ . '/auth.php';

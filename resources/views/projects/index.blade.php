@@ -2,9 +2,9 @@
     <div class="container py-5 mx-auto">
         <div class="mb-4 flex justify-between items-center">
             <h1 class="text-2xl font-semibold">My Tasks</h1>
-            <a href="{{ route('projects.create') }}"
+            {{-- <a href="{{ route('projects.create') }}"
                 class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">+ Create
-                New Task</a>
+                New Task</a> --}}
         </div>
 
         @if ($projects->count())
@@ -17,8 +17,6 @@
                         <div class="mt-4 flex justify-between items-center">
                             <a href="{{ route('projects.show', $task->id) }}"
                                 class="text-blue-500 hover:text-blue-600 transition duration-300">View</a>
-                            <a href="{{ route('projects.edit', $task->id) }}"
-                                class="text-gray-500 hover:text-gray-600 transition duration-300">Edit</a>
 
                             <!-- Mark as Complete Button -->
                             @if (!$task->completed)

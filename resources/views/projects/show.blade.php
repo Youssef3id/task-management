@@ -14,7 +14,7 @@
 
 
         <!-- Delete Project Form with Confirmation -->
-        <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="mt-6" id="delete-form">
+        {{-- <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="mt-6" id="delete-form">
             @csrf
             @method('DELETE')
             <button type="button" onclick="confirmDelete(event)"
@@ -32,5 +32,5 @@
                 document.getElementById('delete-form').submit(); // Submit the form if confirmed
             }
         }
-    </script>
+    </script> --}}
 </x-app-layout>

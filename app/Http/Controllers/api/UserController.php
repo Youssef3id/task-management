@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\allUserResource;
 use App\Http\Resources\TaskResource;
 use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
@@ -21,7 +23,15 @@ class UserController extends Controller
 
         return response()->json([
             'user' => new UserResource($user),
-            'projects' => TaskResource::collection($projects),
+            'tasks' => TaskResource::collection($projects),
+        ]);
+    }
+    public function getAllUser(Request $request)
+    {
+        $user = User::all();
+        return response()->json([
+            'users' => allUserResource::collection($user)
         ]);
     }
 }
+
