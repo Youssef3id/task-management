@@ -12,16 +12,16 @@
             <small class="text-gray-500 block mt-2">Created on {{ $project->created_at->format('d M, Y') }}</small>
         </div>
 
-
-        <!-- Delete Project Form with Confirmation -->
-        {{-- <form action="{{ route('projects.destroy', $project->id) }}" method="POST" class="mt-6" id="delete-form">
-            @csrf
-            @method('DELETE')
-            <button type="button" onclick="confirmDelete(event)"
-                class="px-6 py-3 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-300">
-                Delete task
-            </button>
-        </form>
+        @if (auth()->user() && auth()->user()->role === 'admin')
+            <!-- Delete Project Form with Confirmation -->
+            <form action="{{ route('admin.delete-task', $project->id) }}" method="POST" class="mt-6" id="delete-form">
+                @csrf
+                @method('DELETE')
+                <button type="button" onclick="confirmDelete(event)"
+                    class="px-6 py-3 bg-red-500 text-white rounded-md hover:bg-red-600 transition duration-300">
+                    Delete task
+                </button>
+            </form>
     </div>
 
     <script>
@@ -32,5 +32,6 @@
                 document.getElementById('delete-form').submit(); // Submit the form if confirmed
             }
         }
-    </script> --}}
+    </script>
+    @endif
 </x-app-layout>

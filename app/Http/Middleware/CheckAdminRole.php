@@ -5,6 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Auth;
+
 class CheckAdminRole
 {
     /**
@@ -14,13 +16,15 @@ class CheckAdminRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle(Request $request, Closure $next)
-    {
-        if (!auth()->user() || !auth()->user()->hasRole('admin')) {
 
-            return redirect()->route('unauthorized');
+    public function handle($request, Closure $next)
+    {
+        if (auth()->user() && auth()->user()->role === 'admin') {
+            return $next($request);
         }
 
-        return $next($request);
+        // Optionally redirect or abort if unauthorized
+        return abort(403, 'Unauthorized action.');
     }
 }
+

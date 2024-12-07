@@ -29,6 +29,26 @@
                                 <p class="text-sm text-gray-600"> Date:
                                     {{ $task->created_at ? \Carbon\Carbon::parse($task->created_at)->format('M d, Y') : 'Not set' }}
                                 </p>
+                                <!-- Edit and Delete Buttons -->
+                                <div class="flex space-x-4 mt-4">
+                                    <!-- Edit Button -->
+                                    <a href="{{ route('admin.edit-task', ['task' => $task->id]) }}"
+                                        class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+                                        Edit Task
+                                    </a>
+
+                                    <!-- Delete Button -->
+                                    <form action="{{ route('admin.delete-task', ['task' => $task->id]) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this task?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+                                            Delete Task
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         @endforeach
                     </div>
