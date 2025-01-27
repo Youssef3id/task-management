@@ -1,12 +1,11 @@
 <x-app-layout>
     <div class="container py-5 mx-auto">
-        <div class="mb-4 flex justify-between items-center">
-            <h1 class="text-2xl font-semibold">My Tasks</h1>
-            {{-- <a href="{{ route('projects.create') }}"
-                class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300">+ Create
-                New Task</a> --}}
-        </div>
+        @if (auth()->user() && auth()->user()->role === 'user')
+            <div class="mb-4 flex justify-between items-center">
+                <h1 class="text-2xl font-semibold">My Tasks</h1>
 
+            </div>
+        @endif
         @if ($projects->count())
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 @foreach ($projects as $task)
@@ -35,9 +34,11 @@
                 @endforeach
             </div>
         @else
-            <div class="mt-8 text-center text-gray-600">
-                <p>No Tasks found. Start by creating one!</p>
-            </div>
-        @endif
+            @if (auth()->user() && auth()->user()->role === 'user')
+                <div class="mt-8 text-center text-gray-600">
+                    <p>No Tasks found. Start by creating one!</p>
+            @endif
+    </div>
+    @endif
     </div>
 </x-app-layout>

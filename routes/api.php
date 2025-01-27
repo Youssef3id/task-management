@@ -11,7 +11,7 @@ use Illuminate\Validation\ValidationException;
 
 
 Route::get('/user', [UserController::class, 'getUserTasks'])->middleware('auth:sanctum');
-Route::get('/gat/users', [UserController::class, 'getAllUser'])->middleware('auth:sanctum');
+Route::get('/get/users', [UserController::class, 'getAllUser'])->middleware('auth:sanctum');
 Route::post('/sanctum/token', function (Request $request) {
     $request->validate([
         'email' => 'required|email',

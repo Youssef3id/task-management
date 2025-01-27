@@ -38,7 +38,7 @@ class ProjectController extends Controller
         $project->save();
 
         // Send email to the admin notifying about the completed task
-        $adminEmail = 'youssef.3id@icloud.com'; // Replace with your admin's email address
+        $adminEmail = 'admin@email.com'; // Replace with your admin's email address
         Mail::to($adminEmail)->send(new TaskCompleted($project));
 
         // Redirect to the projects index page
